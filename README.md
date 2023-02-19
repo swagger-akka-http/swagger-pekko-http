@@ -10,6 +10,7 @@
 Swagger-Pekko-Http brings [Swagger](https://swagger.io/swagger-core/) support for [Pekko-Http](https://github.com/apache/incubator-pekko) Apis. The included `SwaggerHttpService` route will inspect Scala types with Swagger annotations and build a swagger compliant endpoint for a [swagger compliant ui](https://petstore.swagger.io/).
 
 This is a fork of [Swagger-Akka-Http](https://github.com/swagger-akka-http/swagger-akka-http).
+If you are switching over from Swagger-Akka-Http and are using an old version, please upgrade first before switching to Swagger-Pekko-Http.
 
 The [OpenAPI spec](https://swagger.io/specification/) is helpful for understanding the swagger api and resource declaration semantics behind swagger-core annotations.
 
@@ -78,30 +79,6 @@ class MySwaggerGenerator extends SwaggerGenerator {
   }
 }
 ```
-
-## Breaking Changes in 0.10.0
-
-In versions prior to 0.10.0, you needed to use code like this:
-
-```scala
-class SwaggerDocService(system: ActorSystem) extends SwaggerHttpService with HasActorSystem {
-  override implicit val actorSystem: ActorSystem = system
-  override implicit val materializer: ActorMaterializer = ActorMaterializer()
-  override val apiTypes = Seq(typeOf[PetService], typeOf[UserService], typeOf[StoreService])
-  override val host = "localhost:8080" //the url of your api, not swagger's json endpoint
-  override val apiDocsPath = "api-docs" //where you want the swagger-json endpoint exposed
-  override val info = Info() //provides license and other description details
-}.routes
-```
-
-* 0.10.0 drops HasActorSystem trait that was not actually useful
-* apiClasses has replaced apiTypes
-  * In Scala 2.11, you will need to explicitly use the `Set[Class[_]]` type, while Scala 2.12 seems to be able to infer it
-* `SwaggerHttpService` now uses `def`s instead of `val`s for more flexibility
-
-## Breaking Changes in 0.11.0
-
-The `val scheme = Scheme.HTTP` has been replaced with `val schemes = List(Scheme.HTTP)`
 
 ## Adding Swagger Annotations
 
