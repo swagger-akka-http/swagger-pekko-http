@@ -1,47 +1,27 @@
-![Build Status](https://github.com/swagger-akka-http/swagger-akka-http/actions/workflows/ci.yml/badge.svg)
+![Build Status](https://github.com/swagger-akka-http/swagger-pekko-http/actions/workflows/ci.yml/badge.svg)
+[![Sonatype Snapshots](https://img.shields.io/nexus/s/https/oss.sonatype.org/com.github.swagger-akka-http/swagger-pekko-http_2.13.svg)](https://oss.sonatype.org/content/repositories/snapshots/com/github/swagger-akka-http/swagger-akka-http_2.13/)
+<!--
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/swagger-akka-http/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.swagger-akka-http/swagger-akka-http_2.13/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.swagger-akka-http/swagger-akka-http_2.13)
-[![Sonatype Snapshots](https://img.shields.io/nexus/s/https/oss.sonatype.org/com.github.swagger-akka-http/swagger-akka-http_2.13.svg)](https://oss.sonatype.org/content/repositories/snapshots/com/github/swagger-akka-http/swagger-akka-http_2.13/)
 [![codecov.io](https://codecov.io/gh/swagger-akka-http/swagger-akka-http/coverage.svg?branch=main)](https://codecov.io/gh/swagger-akka-http/swagger-akka-http/branch/main)
-
+-->
 # swagger-pekko-http
 
-Swagger-Akka-Http brings [Swagger](http://swagger.io/swagger-core/) support for [Akka-Http](http://doc.akka.io/docs/akka-http/current/index.html) Apis. The included `SwaggerHttpService` route will inspect Scala types with Swagger annotations and build a swagger compliant endpoint for a [swagger compliant ui](http://petstore.swagger.io/).
+Swagger-Pekko-Http brings [Swagger](https://swagger.io/swagger-core/) support for [Pekko-Http](https://github.com/apache/incubator-pekko) Apis. The included `SwaggerHttpService` route will inspect Scala types with Swagger annotations and build a swagger compliant endpoint for a [swagger compliant ui](https://petstore.swagger.io/).
 
-This project was featured in a [blog entry](https://blog.codecentric.de/en/2016/04/swagger-akka-http/) on codecentric.
+This is a fork of [Swagger-Akka-Http](https://github.com/swagger-akka-http/swagger-akka-http).
 
-There is another blog entry and demo hosted by [Knoldus](https://blog.knoldus.com/2017/01/31/document-generation-of-akka-http-using-swagger/).
+The [OpenAPI spec](https://swagger.io/specification/) is helpful for understanding the swagger api and resource declaration semantics behind swagger-core annotations.
 
-This is a fork of [gettyimages/spray-swagger](https://github.com/gettyimages/spray-swagger) which has been extended to include pull requests to support the latest swagger.io annotations.
-[swagger-spray/swagger-spray](https://github.com/swagger-spray/swagger-spray) is an actively maintained Spray equivalent.
-
-The [swagger spec](http://swagger.io/specification/) is helpful for understanding the swagger api and resource declaration semantics behind swagger-core annotations.
-
-## Getting Swagger-Akka-Http
+## Getting Swagger-Pekko-Http
 
 ### Release Version
 
 The jars are hosted on [sonatype](https://oss.sonatype.org) and mirrored to Maven Central. Snapshot releases are also hosted on sonatype. 
 
-Version | Stability | Branch | Description
---------|-----------|--------|------------
-2.8.x/2.7.x/2.6.x | stable | main | First releases to support [jakarta](https://github.com/swagger-api/swagger-core/wiki/Swagger-2.X---Getting-started) namespace jars. Supports Scala 2.12/2.13, Akka 2.6.16+, Akka-Http 10.2.6+, Scala-Java8-Compat 1.0+, Jackson 2.13.x, Swagger 2.2.x/2.1.x libs and OpenAPI 3.x Specification.
-2.5.x | stable | 2.5-javax | Supports Scala 2.12/2.13, Akka 2.6.16+, Akka-Http 10.2.6+, Scala-Java8-Compat 1.0+, Jackson 2.12.x, Swagger 2.1.x libs and OpenAPI 3.0 Specification.
-2.4.x | stable | 2.4 | Supports Scala 2.12/2.13, Akka 2.5 and 2.6 (prior to 2.6.16), Akka-Http 10.1/10.2, Swagger 2.0/2.1 libs and OpenAPI 3.0 Specification.
-1.6.x | stable | swagger-1.5| Supports Scala 2.12/2.13, Akka 2.6.16+, Akka-Http 10.2.6+, Scala-Java8-Compat 1.0+, Jackson 2.13.x, Swagger 1.6.x libs and Swagger 2.0 Specification.
-1.5.x | stable | swagger-1.5| Supports Scala 2.12/2.13, Akka 2.6.16+, Akka-Http 10.2.6+, Scala-Java8-Compat 1.0+, Jackson 2.12.x, Swagger 1.6.x libs and Swagger 2.0 Specification.
-1.4.x | stable | 1.4| Supports  Scala 2.12/2.13, Akka 2.5 and 2.6 (prior to 2.6.16), Akka-Http 10.1/10.2, Swagger 1.5.x/1.6.x libs and Swagger 2.0 Specification.
-
 ```sbt
-libraryDependencies += "com.github.swagger-akka-http" %% "swagger-akka-http" % "<release-version>"
+libraryDependencies += "com.github.swagger-akka-http" %% "swagger-pekko-http" % "<release-version>"
 ```
-swagger-akka-http 0.10.x and 0.11.x both have had some changes in APIs, for those who are upgrading. See below for details.
-
-Swagger libraries depend heavily on [Jackson](http://wiki.fasterxml.com/JacksonHome). If you need to older versions of Jackson, consider using swagger-akka-http 0.8.2. It depends on Jackson 2.4.
-
-Scala 2.11 support for akka-http 10.1.x requires swagger-akka-http 2.1.1 or 1.1.2.
-
-Scala 2.10 support for akka-http 2.0.3 requires swagger-akka-http 0.6.2.
 
 ## Examples
 
@@ -59,7 +39,7 @@ The `SwaggerHttpService` contains a `routes` property you can concatenate along 
 
 The service requires a set of `apiTypes` and `modelTypes` you want to expose via Swagger. These types include the appropriate Swagger annotations for describing your api. The `SwaggerHttpService` will inspect these annotations and build the appropriate Swagger response.
 
-Here's an example `SwaggerHttpService` snippet which exposes [Swagger's PetStore](http://petstore.swagger.io/) resources, `Pet`, `User` and `Store`. The routes property can be concatenated to your other route definitions:
+Here's an example `SwaggerHttpService` snippet which exposes [Swagger's PetStore](https://petstore.swagger.io/) resources, `Pet`, `User` and `Store`. The routes property can be concatenated to your other route definitions:
 
 ```scala
 object SwaggerDocService extends SwaggerHttpService {
@@ -72,10 +52,10 @@ object SwaggerDocService extends SwaggerHttpService {
 
 ## Java DSL SwaggerGenerator
 
-This support is added in swagger-akka-http 0.10.1. See [pjfanning/swagger-akka-http-sample-java](https://github.com/pjfanning/swagger-akka-http-sample-java) for a demo application.
+See [pjfanning/swagger-akka-http-sample-java](https://github.com/pjfanning/swagger-akka-http-sample-java) for a demo application.
 
 ```java
-import com.github.swagger.akka.javadsl.SwaggerGenerator;
+import com.github.swagger.pekko.javadsl.SwaggerGenerator;
 class MySwaggerGenerator extends SwaggerGenerator {
   @Override
   public Set<Class<?>> apiClasses() {
@@ -125,7 +105,7 @@ The `val scheme = Scheme.HTTP` has been replaced with `val schemes = List(Scheme
 
 ## Adding Swagger Annotations
 
-Akka-Http routing works by concatenating various routes, built up by directives, to produce an api. The [routing dsl](http://doc.akka.io/docs/akka-http/current/scala/http/introduction.html#routing-dsl-for-http-servers) is an elegant way to describe an api and differs from the more common class and method approach of other frameworks. But because Swagger's annotation library requires classes, methods and fields to describe an Api, one may find it difficult to annotate a akka-http routing application.
+Akka-Http routing works by concatenating various routes, built up by directives, to produce an api. The [routing dsl](https://doc.akka.io/docs/akka-http/current/scala/http/introduction.html#routing-dsl-for-http-servers) is an elegant way to describe an api and differs from the more common class and method approach of other frameworks. But because Swagger's annotation library requires classes, methods and fields to describe an Api, one may find it difficult to annotate a akka-http routing application.
 
 A simple solution is to break apart a akka-http routing application into various resource traits, with methods for specific api operations, joined by route concatentation into a route property. These traits with can then be joined together by their own route properties into a complete api. Despite losing the completeness of an entire api the result is a more modular application with a succint resource list. The balance is up to the developer but for a reasonably-sized applicaiton organizing routes across various traits is probably a good idea.
 
@@ -181,10 +161,10 @@ case class ModelWOptionBooleanSchemaOverride(@Schema(implementation = classOf[Bo
 
 ## Swagger UI
 
-This library does not include [Swagger's UI](http://petstore.swagger.io/) only the api support for powering a UI. Adding such a UI to your akka-http app is easy. 
+This library does not include [Swagger's UI](https://petstore.swagger.io/) only the api support for powering a UI. Adding such a UI to your akka-http app is easy. 
 [swagger-akka-http-sample](https://github.com/pjfanning/swagger-akka-http-sample) does it using libs from org.webjars.
 
-Alternatively, you can include the static files for the Swagger UI and expose using akka-http's `getFromResource` and `getFromResourceDirectory` [support](http://doc.akka.io/docs/akka-http/current/scala/http/routing-dsl/directives/alphabetically.html).
+Alternatively, you can include the static files for the Swagger UI and expose using akka-http's `getFromResource` and `getFromResourceDirectory` [support](https://doc.akka.io/docs/akka-http/current/scala/http/routing-dsl/directives/alphabetically.html).
 
 To add a Swagger UI to your site, simply drop the static site files into the resources directory of your project. The following trait will expose a `swagger` route hosting files from the `resources/swagger/` directory: 
 

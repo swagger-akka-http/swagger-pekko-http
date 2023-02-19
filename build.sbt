@@ -3,11 +3,11 @@ import org.typelevel.sbt.gha.UseRef.Public
 
 organization := "com.github.swagger-akka-http"
 
-name := "swagger-akka-http"
+name := "swagger-pekko-http"
 
 val swaggerVersion = "2.2.8"
-val akkaVersion = "2.6.20"
-val akkaHttpVersion = "10.2.10"
+val pekkoVersion = "0.0.0+26592-864ee821-SNAPSHOT"
+val pekkoHttpVersion = "0.0.0+4284-374ff95e-SNAPSHOT"
 val jacksonVersion = "2.14.2"
 val slf4jVersion = "2.0.6"
 val scala213 = "2.13.10"
@@ -18,6 +18,7 @@ ThisBuild / crossScalaVersions := Seq(scala213, "2.12.17")
 update / checksums := Nil
 
 //resolvers ++= Resolver.sonatypeOssRepos("snapshots")
+resolvers += "Apache Snapshot Repo" at "https://repository.apache.org/content/groups/snapshots/"
 
 autoAPIMappings := true
 
@@ -32,8 +33,8 @@ apiMappings ++= {
 
   val mappings: Seq[(File, URL)] =
     mappingsFor("org.scala-lang", List("scala-library"), "https://scala-lang.org/api/%s/") ++
-      mappingsFor("com.typesafe.akka", List("akka-actor", "akka-stream"), "https://doc.akka.io/api/akka/%s/") ++
-      mappingsFor("com.typesafe.akka", List("akka-http"), "https://doc.akka.io/api/akka-http/%s/") ++
+      //mappingsFor("com.typesafe.akka", List("akka-actor", "akka-stream"), "https://doc.akka.io/api/akka/%s/") ++
+      //mappingsFor("com.typesafe.akka", List("akka-http"), "https://doc.akka.io/api/akka-http/%s/") ++
       mappingsFor("io.swagger.core.v3", List("swagger-core-jakarta"), "https://javadoc.io/doc/io.swagger.core.v3/swagger-core/%s/") ++
       mappingsFor("io.swagger.core.v3", List("swagger-jaxrs2-jakarta"), "https://javadoc.io/doc/io.swagger.core.v3/swagger-jaxrs2/%s/") ++
       mappingsFor("io.swagger.core.v3", List("swagger-models-jakarta"), "https://javadoc.io/doc/io.swagger.core.v3/swagger-models/%s/") ++
@@ -44,11 +45,11 @@ apiMappings ++= {
 }
 
 libraryDependencies ++= Seq(
-  "com.typesafe.akka" %% "akka-stream" % akkaVersion,
-  "com.typesafe.akka" %% "akka-http" % akkaHttpVersion,
-  "com.typesafe.akka" %% "akka-testkit" % akkaVersion % Test,
-  "com.typesafe.akka" %% "akka-http-spray-json" % akkaHttpVersion % Test,
-  "com.typesafe.akka" %% "akka-http-testkit" % akkaHttpVersion % Test,
+  "org.apache.pekko" %% "pekko-stream" % pekkoVersion,
+  "org.apache.pekko" %% "pekko-http" % pekkoHttpVersion,
+  "org.apache.pekko" %% "pekko-testkit" % pekkoVersion % Test,
+  "org.apache.pekko" %% "pekko-http-spray-json" % pekkoHttpVersion % Test,
+  "org.apache.pekko" %% "pekko-http-testkit" % pekkoHttpVersion % Test,
   "io.swagger.core.v3" % "swagger-core-jakarta" % swaggerVersion,
   "io.swagger.core.v3" % "swagger-annotations-jakarta" % swaggerVersion,
   "io.swagger.core.v3" % "swagger-models-jakarta" % swaggerVersion,
@@ -83,12 +84,17 @@ Test / parallelExecution := false
 
 pomIncludeRepository := { _ => false }
 
-homepage := Some(url("https://github.com/swagger-akka-http/swagger-akka-http"))
+homepage := Some(url("https://github.com/swagger-akka-http/swagger-pekko-http"))
 
 licenses := Seq("The Apache Software License, Version 2.0" -> url("https://www.apache.org/licenses/LICENSE-2.0.txt"))
 
 pomExtra := (
   <developers>
+    <developer>
+      <id>pjfanning</id>
+      <name>PJ Fanning</name>
+      <url>https://github.com/pjfanning</url>
+    </developer>
     <developer>
       <id>mhamrah</id>
       <name>Michael Hamrah</name>
@@ -103,11 +109,6 @@ pomExtra := (
       <id>rliebman</id>
       <name>Roberto Liebman</name>
       <url>https://github.com/rleibman</url>
-    </developer>
-    <developer>
-      <id>pjfanning</id>
-      <name>PJ Fanning</name>
-      <url>https://github.com/pjfanning</url>
     </developer>
   </developers>)
 

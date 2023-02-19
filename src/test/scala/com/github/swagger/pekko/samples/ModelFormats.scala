@@ -13,9 +13,9 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
-package com.github.swagger.akka.samples
+package com.github.swagger.pekko.samples
 
-import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
+import org.apache.pekko.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
 import spray.json.DefaultJsonProtocol
 
 /**

@@ -1,4 +1,4 @@
-package com.github.swagger.akka.samples
+package com.github.swagger.pekko.samples
 
 import jakarta.ws.rs.Path
 

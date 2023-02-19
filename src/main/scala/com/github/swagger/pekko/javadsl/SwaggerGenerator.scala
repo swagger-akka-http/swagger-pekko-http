@@ -1,6 +1,19 @@
-package com.github.swagger.akka.javadsl
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.github.swagger.pekko.javadsl
 
-import com.github.swagger.akka.model.asScala
+import com.github.swagger.pekko.model.asScala
 import io.swagger.v3.oas.models.info.Info
 import io.swagger.v3.oas.models.security.{SecurityRequirement, SecurityScheme}
 import io.swagger.v3.oas.models.{Components, ExternalDocumentation, SpecVersion}
@@ -43,15 +56,15 @@ trait SwaggerGenerator {
   def generateSwaggerYaml: String = converter.generateSwaggerYaml
 }
 
-private class Converter(javaGenerator: SwaggerGenerator) extends com.github.swagger.akka.SwaggerGenerator {
-  import com.github.swagger.akka.model.swagger2scala
+private class Converter(javaGenerator: SwaggerGenerator) extends com.github.swagger.pekko.SwaggerGenerator {
+  import com.github.swagger.pekko.model.swagger2scala
   override def apiClasses: Set[Class[_]] = asScala(javaGenerator.apiClasses)
   override def host: String = javaGenerator.host
   override def schemes: List[String] = asScala(javaGenerator.schemes)
   override def serverURLs: Seq[String] = asScala(javaGenerator.serverURLs)
   override def basePath: String = javaGenerator.basePath
   override def apiDocsPath: String = javaGenerator.apiDocsPath
-  override def info: com.github.swagger.akka.model.Info = javaGenerator.info
+  override def info: com.github.swagger.pekko.model.Info = javaGenerator.info
   override def components: Option[Components] = asScala(javaGenerator.components)
   override def security: List[SecurityRequirement] = asScala(javaGenerator.security)
   override def securitySchemes: Map[String, SecurityScheme] = asScala(javaGenerator.securitySchemes)

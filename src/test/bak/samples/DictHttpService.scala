@@ -1,12 +1,12 @@
-package com.github.swagger.akka.samples
+package com.github.swagger.pekko.samples
 
 
-import akka.http.scaladsl.server.Directives
-import akka.stream.ActorMaterializer
-import akka.actor.ActorSystem
-import akka.http.scaladsl.marshalling.ToResponseMarshallable.apply
-import akka.http.scaladsl.server.Directive.addByNameNullaryApply
-import akka.http.scaladsl.server.Directive.addDirectiveApply
+import org.apache.pekko.http.scaladsl.server.Directives
+import org.apache.pekko.stream.ActorMaterializer
+import org.apache.pekko.actor.ActorSystem
+import org.apache.pekko.http.scaladsl.marshalling.ToResponseMarshallable.apply
+import org.apache.pekko.http.scaladsl.server.Directive.addByNameNullaryApply
+import org.apache.pekko.http.scaladsl.server.Directive.addDirectiveApply
 import io.swagger.annotations._
 import io.swagger.annotations.SwaggerDefinition.Scheme
 import jakarta.ws.rs.Path

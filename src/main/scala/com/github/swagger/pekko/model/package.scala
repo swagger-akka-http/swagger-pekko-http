@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.swagger.akka
+package com.github.swagger.pekko
 
 import scala.collection.JavaConverters._
 import scala.compat.java8.OptionConverters._

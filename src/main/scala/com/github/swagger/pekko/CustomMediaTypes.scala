@@ -11,10 +11,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.swagger.akka
+package com.github.swagger.pekko
 
-import akka.http.scaladsl.model.MediaType
-import akka.http.scaladsl.model.HttpCharsets.`UTF-8`
+import org.apache.pekko.http.scaladsl.model.MediaType
+import org.apache.pekko.http.scaladsl.model.HttpCharsets.`UTF-8`
 
 object CustomMediaTypes {
 

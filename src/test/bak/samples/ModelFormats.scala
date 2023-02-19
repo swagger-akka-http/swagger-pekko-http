@@ -13,11 +13,11 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
-package com.github.swagger.akka.samples
+package com.github.swagger.pekko.samples
 
-import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
-import akka.http.scaladsl.marshalling._
-import akka.http.scaladsl.unmarshalling._
+import org.apache.pekko.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
+import org.apache.pekko.http.scaladsl.marshalling._
+import org.apache.pekko.http.scaladsl.unmarshalling._
 import spray.json.DefaultJsonProtocol
 import io.swagger.annotations.ApiModel
 
@@ -27,7 +27,7 @@ import io.swagger.annotations.ApiModel
 trait ModelFormats
   extends DefaultJsonProtocol
     with SprayJsonSupport {
-  import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport._
+  import org.apache.pekko.http.scaladsl.marshallers.sprayjson.SprayJsonSupport._
 
   implicit val dictEntryformats = jsonFormat3(DictEntry)
 }

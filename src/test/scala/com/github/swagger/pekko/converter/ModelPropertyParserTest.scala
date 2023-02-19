@@ -1,4 +1,4 @@
-package com.github.swagger.akka.converter
+package com.github.swagger.pekko.converter
 
 import com.github.swagger.scala.converter.SwaggerScalaModelConverter
 import io.swagger.v3.core.converter._

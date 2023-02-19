@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.swagger.akka.samples
+package com.github.swagger.pekko.samples
 
 import io.swagger.annotations._
 import jakarta.ws.rs.Path

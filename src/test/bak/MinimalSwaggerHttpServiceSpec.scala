@@ -1,14 +1,14 @@
-package com.github.swagger.akka
+package com.github.swagger.pekko
 
 import scala.collection.JavaConverters._
 import org.json4s._
 import org.json4s.native.JsonMethods._
 import org.scalatest.{BeforeAndAfterAll, Matchers, WordSpec}
 import org.yaml.snakeyaml.Yaml
-import com.github.swagger.akka.model._
-import com.github.swagger.akka.samples._
-import akka.http.scaladsl.model.ContentTypes
-import akka.http.scaladsl.testkit.ScalatestRouteTest
+import com.github.swagger.pekko.model._
+import com.github.swagger.pekko.samples._
+import org.apache.pekko.http.scaladsl.model.ContentTypes
+import org.apache.pekko.http.scaladsl.testkit.ScalatestRouteTest
 
 class MinimalSwaggerHttpServiceSpec
     extends WordSpec with Matchers with BeforeAndAfterAll with ScalatestRouteTest {

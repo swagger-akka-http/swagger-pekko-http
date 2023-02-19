@@ -13,17 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.swagger.akka.samples
+package com.github.swagger.pekko.samples
 
 
-import com.github.swagger.akka._
-import com.github.swagger.akka.model.{Contact, Info, License}
+import com.github.swagger.pekko._
+import com.github.swagger.pekko.model.{Contact, Info, License}
 
-import akka.actor.{ActorRefFactory, ActorSystem}
-import akka.http.scaladsl.model.ContentTypes.`application/json`
-import akka.http.scaladsl.model.StatusCodes.OK
-import akka.http.scaladsl.model.{HttpEntity, HttpResponse}
-import akka.http.scaladsl.server.{Directives, Route}
+import org.apache.pekko.actor.{ActorRefFactory, ActorSystem}
+import org.apache.pekko.http.scaladsl.model.ContentTypes.`application/json`
+import org.apache.pekko.http.scaladsl.model.StatusCodes.OK
+import org.apache.pekko.http.scaladsl.model.{HttpEntity, HttpResponse}
+import org.apache.pekko.http.scaladsl.server.{Directives, Route}
 import io.swagger.annotations._
 import jakarta.ws.rs.Path
 

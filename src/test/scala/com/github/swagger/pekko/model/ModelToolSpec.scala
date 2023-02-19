@@ -1,7 +1,7 @@
-package com.github.swagger.akka.model
+package com.github.swagger.pekko.model
 
-import com.github.swagger.akka.SwaggerHttpService
-import com.github.swagger.akka.samples.{PetHttpService, UserHttpService}
+import com.github.swagger.pekko.SwaggerHttpService
+import com.github.swagger.pekko.samples.{PetHttpService, UserHttpService}
 import io.swagger.v3.oas.models.info.{Contact => SwaggerContact, Info => SwaggerInfo, License => SwaggerLicense}
 import io.swagger.v3.oas.models.media.Schema
 import org.scalatest.matchers.should.Matchers

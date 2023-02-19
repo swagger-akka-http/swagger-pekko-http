@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.swagger.akka
+package com.github.swagger.pekko
 
-import com.github.swagger.akka.samples._
+import com.github.swagger.pekko.samples._
 import io.swagger.v3.jaxrs2.Reader
 import io.swagger.v3.oas.models.OpenAPI
 import io.swagger.v3.oas.models.info.Info
@@ -51,7 +51,7 @@ class ApiReaderSpec
       val reader = new Reader(apiConfig)
       val api = reader.read(Set[Class[_]](classOf[DictHttpService]).asJava)
 
-      val info = com.github.swagger.akka.model.swagger2scala(api.getInfo())
+      val info = com.github.swagger.pekko.model.swagger2scala(api.getInfo())
 
       "set the api version" in {
         api.getOpenapi shouldBe OPENAPI_VERSION

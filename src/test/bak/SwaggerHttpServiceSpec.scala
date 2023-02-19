@@ -1,13 +1,13 @@
-package com.github.swagger.akka
+package com.github.swagger.pekko
 
 import java.util
 
-import akka.http.scaladsl.model._
-import akka.http.scaladsl.server.Directives._
-import akka.http.scaladsl.server.Route
-import akka.http.scaladsl.testkit.ScalatestRouteTest
-import com.github.swagger.akka.model._
-import com.github.swagger.akka.samples._
+import org.apache.pekko.http.scaladsl.model._
+import org.apache.pekko.http.scaladsl.server.Directives._
+import org.apache.pekko.http.scaladsl.server.Route
+import org.apache.pekko.http.scaladsl.testkit.ScalatestRouteTest
+import com.github.swagger.pekko.model._
+import com.github.swagger.pekko.samples._
 import io.swagger.models.auth.BasicAuthDefinition
 import io.swagger.models.{ExternalDocs, Model, Scheme}
 import io.swagger.v3.oas.models.Components

@@ -1,6 +1,6 @@
-package com.github.swagger.akka.javadsl
+package com.github.swagger.pekko.javadsl
 
-import com.github.swagger.akka.samples.DictHttpService
+import com.github.swagger.pekko.samples.DictHttpService
 import io.swagger.v3.oas.models.ExternalDocumentation
 import io.swagger.v3.oas.models.info.{Contact, Info, License}
 import io.swagger.v3.oas.models.security.{SecurityRequirement, SecurityScheme}
@@ -70,7 +70,7 @@ class SwaggerGeneratorSpec extends AnyWordSpec with Matchers {
       generator.converter.basePath shouldEqual generator.basePath
       generator.converter.schemes shouldEqual generator.schemes.asScala
       generator.converter.security shouldEqual generator.security.asScala
-      import com.github.swagger.akka.model.scala2swagger
+      import com.github.swagger.pekko.model.scala2swagger
       scala2swagger(generator.converter.info) shouldEqual testInfo
       generator.converter.securitySchemes.asJava shouldEqual generator.securitySchemes
       generator.converter.externalDocs.get shouldEqual generator.externalDocs.get()

@@ -13,11 +13,11 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
-package com.github.swagger.akka.samples
+package com.github.swagger.pekko.samples
 
-import akka.http.scaladsl.server.Directives
-import akka.stream.ActorMaterializer
-import akka.actor.ActorSystem
+import org.apache.pekko.http.scaladsl.server.Directives
+import org.apache.pekko.stream.ActorMaterializer
+import org.apache.pekko.actor.ActorSystem
 import io.swagger.v3.oas.annotations.enums.ParameterIn
 import io.swagger.v3.oas.annotations.{Operation, Parameter}
 import io.swagger.v3.oas.annotations.media.{Content, Schema}

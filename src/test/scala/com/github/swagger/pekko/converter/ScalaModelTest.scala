@@ -1,4 +1,4 @@
-package com.github.swagger.akka.converter
+package com.github.swagger.pekko.converter
 
 import io.swagger.v3.core.converter._
 import io.swagger.v3.oas.annotations.Parameter

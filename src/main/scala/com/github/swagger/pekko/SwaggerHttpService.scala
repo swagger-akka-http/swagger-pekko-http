@@ -11,11 +11,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.swagger.akka
+package com.github.swagger.pekko
 
-import akka.http.scaladsl.model.{HttpEntity, MediaTypes}
-import akka.http.scaladsl.server.{Directives, PathMatchers, Route}
-import com.github.swagger.akka.model.{Info, asScala}
+import org.apache.pekko.http.scaladsl.model.{HttpEntity, MediaTypes}
+import org.apache.pekko.http.scaladsl.server.{Directives, PathMatchers, Route}
+import com.github.swagger.pekko.model.{Info, asScala}
 import io.swagger.v3.core.util.{Json, Json31, Yaml, Yaml31}
 import io.swagger.v3.jaxrs2.Reader
 import io.swagger.v3.oas.integration.SwaggerConfiguration
@@ -39,8 +39,8 @@ object SwaggerHttpService {
     if(path.endsWith("/")) removeTrailingSlashIfNecessary(path.substring(0, path.length)) else path
   def prependSlashIfNecessary(path: String): String  = if(path.startsWith("/")) path else s"/$path"
 
-  private[akka] def apiDocsBase(path: String) = PathMatchers.separateOnSlashes(removeInitialSlashIfNecessary(path))
-  private[akka] val logger = LoggerFactory.getLogger(classOf[SwaggerHttpService])
+  private[pekko] def apiDocsBase(path: String) = PathMatchers.separateOnSlashes(removeInitialSlashIfNecessary(path))
+  private[pekko] val logger = LoggerFactory.getLogger(classOf[SwaggerHttpService])
 }
 
 trait SwaggerGenerator {
@@ -150,15 +150,15 @@ trait SwaggerGenerator {
     }
   }
 
-  private[akka] def asJavaMutableList[T](list: List[T]) = {
+  private[pekko] def asJavaMutableList[T](list: List[T]) = {
     (new ListBuffer[T] ++ list).asJava
   }
 
-  private[akka] def asJavaMutableMap[K, V](map: Map[K, V]) = {
+  private[pekko] def asJavaMutableMap[K, V](map: Map[K, V]) = {
     (MutableMap.empty[K, V] ++ map).asJava
   }
 
-  private[akka] def filteredSwagger: OpenAPI = {
+  private[pekko] def filteredSwagger: OpenAPI = {
     val swagger: OpenAPI = reader.read(apiClasses.asJava)
     if (!unwantedDefinitions.isEmpty) {
       val filteredSchemas = asJavaMutableMap(asScala(swagger.getComponents.getSchemas).filterKeys(

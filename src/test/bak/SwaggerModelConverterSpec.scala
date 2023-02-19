@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.swagger.akka
+package com.github.swagger.pekko
 
 import io.swagger.converter.ModelConverters
 import io.swagger.models.properties.{RefProperty, DateProperty, ArrayProperty, StringProperty}
 import org.scalatest.{Matchers, WordSpec}
 import scala.collection.JavaConverters._
-import com.github.swagger.akka.samples._
+import com.github.swagger.pekko.samples._
 
 class SwaggerModelConverterSpec
   extends WordSpec
