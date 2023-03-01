@@ -7,7 +7,7 @@
 -->
 # swagger-pekko-http
 
-Swagger-Pekko-Http brings [Swagger](https://swagger.io/swagger-core/) support for [Pekko-Http](https://github.com/apache/incubator-pekko) Apis. The included `SwaggerHttpService` route will inspect Scala types with Swagger annotations and build a swagger compliant endpoint for a [swagger compliant ui](https://petstore.swagger.io/).
+Swagger-Pekko-Http brings [Swagger](https://swagger.io/swagger-core/) support for [Pekko-Http](https://github.com/apache/incubator-pekko-http) Apis. The included `SwaggerHttpService` route will inspect Scala types with Swagger annotations and build a swagger compliant endpoint for a [swagger compliant ui](https://petstore.swagger.io/).
 
 This is a fork of [Swagger-Akka-Http](https://github.com/swagger-akka-http/swagger-akka-http).
 If you are switching over from Swagger-Akka-Http and are using an old version, please upgrade first before switching to Swagger-Pekko-Http.
@@ -26,17 +26,15 @@ libraryDependencies += "com.github.swagger-akka-http" %% "swagger-pekko-http" % 
 
 ## Examples
 
-[pjfanning/swagger-akka-http-sample](https://github.com/pjfanning/swagger-akka-http-sample) is a simple sample using this project.
+[pjfanning/swagger-pekko-http-sample](https://github.com/pjfanning/swagger-pekko-http-sample) is a simple sample using this project.
 
-[pjfanning/swagger-akka-http-sample-java](https://github.com/pjfanning/swagger-akka-http-sample-java) demonstrates the experimental Java DSL support added in swagger-akka-http 0.10.1.
-
-The `/test` directory includes an `HttpSwaggerServiceSpec` which uses `akka-http-testkit` to test the API. It uses a `PetHttpService` and `UserHttpService` declared in the `/samples` folder. 
+The `/test` directory includes an `HttpSwaggerServiceSpec` which uses `pekko-http-testkit` to test the API. It uses a `PetHttpService` and `UserHttpService` declared in the `/samples` folder. 
 
 ## SwaggerHttpService
 
-The `SwaggerHttpService` is a trait extending Akka-Http's `HttpService`. It will generate the appropriate Swagger json schema based on a set of inputs declaring your Api and the types you want to expose.
+The `SwaggerHttpService` is a trait extending Pekko-Http's `HttpService`. It will generate the appropriate Swagger json schema based on a set of inputs declaring your Api and the types you want to expose.
 
-The `SwaggerHttpService` contains a `routes` property you can concatenate along with your existing akka-http routes. This will expose an endpoint at `<baseUrl>/<specPath>/<resourcePath>` with the specified `apiVersion`, `swaggerVersion` and resource listing.
+The `SwaggerHttpService` contains a `routes` property you can concatenate along with your existing pekko-http routes. This will expose an endpoint at `<baseUrl>/<specPath>/<resourcePath>` with the specified `apiVersion`, `swaggerVersion` and resource listing.
 
 The service requires a set of `apiTypes` and `modelTypes` you want to expose via Swagger. These types include the appropriate Swagger annotations for describing your api. The `SwaggerHttpService` will inspect these annotations and build the appropriate Swagger response.
 
@@ -53,7 +51,7 @@ object SwaggerDocService extends SwaggerHttpService {
 
 ## Java DSL SwaggerGenerator
 
-See [pjfanning/swagger-akka-http-sample-java](https://github.com/pjfanning/swagger-akka-http-sample-java) for a demo application.
+See [pjfanning/swagger-akka-http-sample-java](https://github.com/pjfanning/swagger-akka-http-sample-java) for an Akka based demo application.
 
 ```java
 import com.github.swagger.pekko.javadsl.SwaggerGenerator;
@@ -82,9 +80,9 @@ class MySwaggerGenerator extends SwaggerGenerator {
 
 ## Adding Swagger Annotations
 
-Akka-Http routing works by concatenating various routes, built up by directives, to produce an api. The [routing dsl](https://doc.akka.io/docs/akka-http/current/scala/http/introduction.html#routing-dsl-for-http-servers) is an elegant way to describe an api and differs from the more common class and method approach of other frameworks. But because Swagger's annotation library requires classes, methods and fields to describe an Api, one may find it difficult to annotate a akka-http routing application.
+Apache Pekko Http routing works by concatenating various routes, built up by directives, to produce an api. The [routing dsl](https://doc.akka.io/docs/akka-http/current/scala/http/introduction.html#routing-dsl-for-http-servers) is an elegant way to describe an api and differs from the more common class and method approach of other frameworks. But because Swagger's annotation library requires classes, methods and fields to describe an Api, one may find it difficult to annotate a pekko-http routing application.
 
-A simple solution is to break apart a akka-http routing application into various resource traits, with methods for specific api operations, joined by route concatentation into a route property. These traits with can then be joined together by their own route properties into a complete api. Despite losing the completeness of an entire api the result is a more modular application with a succint resource list. The balance is up to the developer but for a reasonably-sized applicaiton organizing routes across various traits is probably a good idea.
+A simple solution is to break apart a pekko-http routing application into various resource traits, with methods for specific api operations, joined by route concatentation into a route property. These traits with can then be joined together by their own route properties into a complete api. Despite losing the completeness of an entire api the result is a more modular application with a succint resource list. The balance is up to the developer but for a reasonably-sized applicaiton organizing routes across various traits is probably a good idea.
 
 With this structure you can apply `@Api` annotations to these individual traits and `@ApiOperation` annotations to methods.
 
@@ -94,7 +92,7 @@ You can also use jax-rs `@Path` annotations alongside `@ApiOperation`s if you ne
 
 The swagger 2.0 annotations are very different from those used in swagger 1.5.
 
-The general pattern for resource definitions and akka-http routes:
+The general pattern for resource definitions and pekko-http routes:
 
 * Place an individual resource in its own trait
 * Define specific api operations with `def` methods which produce a route
@@ -138,10 +136,9 @@ case class ModelWOptionBooleanSchemaOverride(@Schema(implementation = classOf[Bo
 
 ## Swagger UI
 
-This library does not include [Swagger's UI](https://petstore.swagger.io/) only the api support for powering a UI. Adding such a UI to your akka-http app is easy. 
-[swagger-akka-http-sample](https://github.com/pjfanning/swagger-akka-http-sample) does it using libs from org.webjars.
+This library does not include [Swagger's UI](https://petstore.swagger.io/) only the API support for powering a UI. Adding such a UI to your pekko-http app is easy.
 
-Alternatively, you can include the static files for the Swagger UI and expose using akka-http's `getFromResource` and `getFromResourceDirectory` [support](https://doc.akka.io/docs/akka-http/current/scala/http/routing-dsl/directives/alphabetically.html).
+You can include the static files for the Swagger UI and expose using pekko-http's `getFromResource` and `getFromResourceDirectory` [support](https://doc.akka.io/docs/akka-http/current/scala/http/routing-dsl/directives/alphabetically.html).
 
 To add a Swagger UI to your site, simply drop the static site files into the resources directory of your project. The following trait will expose a `swagger` route hosting files from the `resources/swagger/` directory: 
 
@@ -153,7 +150,7 @@ trait Site extends Directives {
 }
 ```
 
-You can then mix this trait with a new or existing Akka-Http class with an `actorRefFactory` and concatenate the `site` route value to your existing route definitions.
+You can then mix this trait with a new or existing Pekko-Http class with an `actorRefFactory` and concatenate the `site` route value to your existing route definitions.
 
 ## How Annotations are Mapped to Swagger
 
