@@ -136,7 +136,9 @@ case class ModelWOptionBooleanSchemaOverride(@Schema(implementation = classOf[Bo
 
 ## Swagger UI
 
-This library does not include [Swagger's UI](https://petstore.swagger.io/) only the API support for powering a UI. Adding such a UI to your pekko-http app is easy.
+This library does not include [Swagger's UI](https://petstore.swagger.io/) only the API support for powering a UI. Loading up https://petstore.swagger.io/ and providing the URL to your swagger docs is a good option for testing.
+
+Adding such a UI to your pekko-http app is easy. [webjars/swagger-ui](https://github.com/webjars/swagger-ui) is one option.
 
 You can include the static files for the Swagger UI and expose using pekko-http's `getFromResource` and `getFromResourceDirectory` [support](https://doc.akka.io/docs/akka-http/current/scala/http/routing-dsl/directives/alphabetically.html).
 
