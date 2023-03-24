@@ -170,7 +170,6 @@ trait SwaggerGenerator {
       }
       case _ =>
     }
-
     swagger
   }
 }
