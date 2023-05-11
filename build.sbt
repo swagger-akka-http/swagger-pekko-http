@@ -58,6 +58,7 @@ libraryDependencies ++= Seq(
   "org.slf4j" % "slf4j-api" % slf4jVersion,
   "com.fasterxml.jackson.module" %% "jackson-module-scala" % jacksonVersion,
   "com.fasterxml.jackson.dataformat" % "jackson-dataformat-yaml" % jacksonVersion,
+  "org.scala-lang.modules" %% "scala-java8-compat" % "1.0.2",
   "org.scalatest" %% "scalatest" % "3.2.15" % Test,
   "org.json4s" %% "json4s-native" % "4.0.6" % Test,
   "jakarta.ws.rs" % "jakarta.ws.rs-api" % "3.0.0" % Test,
@@ -65,16 +66,6 @@ libraryDependencies ++= Seq(
   "org.joda" % "joda-convert" % "2.2.3" % Test,
   "org.slf4j" % "slf4j-simple" % slf4jVersion % Test
 )
-
-// While not ideal, Akka 2.12 is still on 0.8.0 so to align with them we'll
-// stick on 0.8.0 for 2.12 only. This will ensure that users are aligned and
-// don't have to add in hacks to avoid the early-semver mismatch that comes if
-// you try to include both 1.0.1 and 0.8.0 since it can't safely evict in that
-// case.
-libraryDependencies += CrossVersion.partialVersion(scalaVersion.value).map {
-  case ((2, 12)) => "org.scala-lang.modules" %% "scala-java8-compat" % "0.8.0"
-  case _ => "org.scala-lang.modules" %% "scala-java8-compat" % "1.0.2"
-}
 
 Test / testOptions += Tests.Argument("-oD")
 
