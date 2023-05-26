@@ -326,12 +326,12 @@ class ApiReaderSpec
 //          case bp: BodyParameter => Some(bp.getSchema)
 //          case _=> None
 //        }
-//        modelOpt should be ('defined)
+//        modelOpt shouldBe defined
 //        val miOpt = modelOpt.get match {
 //          case mi: ModelImpl => Some(mi)
 //          case _ => None
 //        }
-//        miOpt should be ('defined)
+//        miOpt shouldBe defined
 //        miOpt.get.getType should equal ("string")
 //        miOpt.get.getFormat should equal ("date-time")
 //      }

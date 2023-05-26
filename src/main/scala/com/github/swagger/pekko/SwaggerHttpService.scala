@@ -80,6 +80,7 @@ trait SwaggerGenerator {
     swagger.setSpecVersion(sv)
     val version = if (sv == SpecVersion.V31) "3.1.0" else "3.0.1"
     swagger.setOpenapi(version)
+    import model._
     swagger.setInfo(info)
     components.foreach { c => swagger.setComponents(c) }
 

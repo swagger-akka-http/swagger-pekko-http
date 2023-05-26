@@ -16,7 +16,7 @@
 package com.github.swagger.pekko.samples
 
 import org.apache.pekko.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
-import spray.json.DefaultJsonProtocol
+import spray.json.{DefaultJsonProtocol, RootJsonFormat}
 
 /**
   * @author rleibman
@@ -24,5 +24,5 @@ import spray.json.DefaultJsonProtocol
 trait ModelFormats
   extends DefaultJsonProtocol
     with SprayJsonSupport {
-  implicit val dictEntryformats = jsonFormat3(DictEntry)
+  implicit val dictEntryFormats: RootJsonFormat[DictEntry] = jsonFormat3(DictEntry.apply)
 }

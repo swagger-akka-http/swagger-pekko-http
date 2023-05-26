@@ -22,7 +22,7 @@ class MinimalSwaggerHttpServiceSpec
     override val apiClasses: Set[Class[_]] = Set(classOf[PetHttpService], classOf[UserHttpService])
   }
 
-  implicit val formats = org.json4s.DefaultFormats
+  private implicit val formats: org.json4s.Formats = org.json4s.DefaultFormats
 
   "The SwaggerHttpService" when {
     "accessing the root doc path" should {

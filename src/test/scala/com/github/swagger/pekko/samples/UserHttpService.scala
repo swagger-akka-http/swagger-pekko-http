@@ -26,8 +26,8 @@ import jakarta.ws.rs.Path
 trait UserHttpService
   extends Directives
     with ModelFormats {
-  implicit val actorSystem = ActorSystem("mysystem")
-  implicit val materializer = ActorMaterializer()
+  implicit val actorSystem: ActorSystem = ActorSystem("mysystem")
+  implicit val materializer: ActorMaterializer = ActorMaterializer()
 
 //  @ApiOperation(value = "Updated user", notes = "This can only be done by the logged in user.", nickname = "updateUser", httpMethod = "PUT")
 //  @ApiImplicitParams(Array(
@@ -52,7 +52,7 @@ trait UserHttpService
   def getUser = post {
     path("/user" / Segment) { id ⇒
     {
-      formFields('name, 'status) { (name, status) ⇒
+      formFields("name", "status") { (name, status) ⇒
         complete("ok")
       }
     }

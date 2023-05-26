@@ -16,8 +16,8 @@ import jakarta.ws.rs.Path
 trait DictHttpService
     extends Directives
     with ModelFormats {
-  implicit val actorSystem = ActorSystem("mysystem")
-  implicit val materializer = ActorMaterializer()
+  implicit val actorSystem: ActorSystem = ActorSystem("mysystem")
+  implicit val materializer: ActorMaterializer = ActorMaterializer()
 
   val me = DictEntry("", "", None)
 

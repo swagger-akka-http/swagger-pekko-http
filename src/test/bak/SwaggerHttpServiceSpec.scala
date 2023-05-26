@@ -54,7 +54,7 @@ class SwaggerHttpServiceSpec
     override val securitySchemeDefinitions = Map("basicAuth" -> new BasicAuthDefinition())
   }
 
-  implicit val formats = org.json4s.DefaultFormats
+  implicit val formats: org.json4s.Formats = org.json4s.DefaultFormats
 
   "The SwaggerHttpService" when {
     "accessing the root doc path" should {

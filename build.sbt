@@ -6,14 +6,14 @@ organization := "com.github.swagger-akka-http"
 name := "swagger-pekko-http"
 
 val swaggerVersion = "2.2.10"
-val pekkoVersion = "0.0.0+26657-245bed58-SNAPSHOT"
-val pekkoHttpVersion = "0.0.0+4346-c215721a-SNAPSHOT"
+val pekkoVersion = "0.0.0+26669-ec5b6764-SNAPSHOT"
+val pekkoHttpVersion = "0.0.0+4407-64fd8ac8-SNAPSHOT"
 val jacksonVersion = "2.14.3"
 val slf4jVersion = "2.0.7"
 val scala213 = "2.13.10"
 
 ThisBuild / scalaVersion := scala213
-ThisBuild / crossScalaVersions := Seq(scala213, "2.12.17")
+ThisBuild / crossScalaVersions := Seq(scala213, "2.12.17", "3.3.0")
 
 update / checksums := Nil
 
