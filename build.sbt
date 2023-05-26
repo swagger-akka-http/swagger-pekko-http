@@ -7,7 +7,7 @@ name := "swagger-pekko-http"
 
 val swaggerVersion = "2.2.10"
 val pekkoVersion = "0.0.0+26669-ec5b6764-SNAPSHOT"
-val pekkoHttpVersion = "0.0.0+4407-64fd8ac8-SNAPSHOT"
+val pekkoHttpVersion = "0.0.0+4411-6fe04045-SNAPSHOT"
 val jacksonVersion = "2.14.3"
 val slf4jVersion = "2.0.7"
 val scala213 = "2.13.10"
@@ -54,7 +54,7 @@ libraryDependencies ++= Seq(
   "io.swagger.core.v3" % "swagger-annotations-jakarta" % swaggerVersion,
   "io.swagger.core.v3" % "swagger-models-jakarta" % swaggerVersion,
   "io.swagger.core.v3" % "swagger-jaxrs2-jakarta" % swaggerVersion,
-  "com.github.swagger-akka-http" %% "swagger-scala-module" % "2.9.1",
+  "com.github.swagger-akka-http" %% "swagger-scala-module" % "2.10.0",
   "org.slf4j" % "slf4j-api" % slf4jVersion,
   "com.fasterxml.jackson.module" %% "jackson-module-scala" % jacksonVersion,
   "com.fasterxml.jackson.dataformat" % "jackson-dataformat-yaml" % jacksonVersion,
