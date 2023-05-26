@@ -29,8 +29,8 @@ trait PetHttpService
     extends Directives
     with ModelFormats {
 
-  implicit val actorSystem = ActorSystem("mysystem")
-  implicit val materializer = ActorMaterializer()
+  implicit val actorSystem: ActorSystem = ActorSystem("mysystem")
+  implicit val materializer: ActorMaterializer = ActorMaterializer()
   import actorSystem.dispatcher
 
   @ApiOperation(value = "Find a pet by ID", notes = "Returns a pet based on ID", httpMethod = "GET", response = classOf[Pet])
@@ -55,7 +55,7 @@ trait PetHttpService
   def updateRoute = post {
     path("/pet" / Segment) { id ⇒
       {
-        formFields('name, 'status) { (name, status) ⇒
+        formFields("name", "status") { (name, status) ⇒
           complete("ok")
         }
       }

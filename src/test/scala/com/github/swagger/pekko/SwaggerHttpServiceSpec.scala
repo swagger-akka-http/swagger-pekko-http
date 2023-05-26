@@ -146,7 +146,7 @@ class SwaggerHttpServiceSpec
 
   }
 
-  private implicit val formats = org.json4s.DefaultFormats
+  private implicit val formats: org.json4s.Formats = org.json4s.DefaultFormats
 
   "The SwaggerHttpService" when {
     "accessing the root doc path" should {

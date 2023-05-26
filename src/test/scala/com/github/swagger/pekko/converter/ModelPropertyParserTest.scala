@@ -27,7 +27,7 @@ class ModelPropertyParserTest extends AnyFlatSpec with Matchers {
     val converter = ModelConverters.getInstance()
     val schemas = converter.readAll(classOf[ModelWOptionString]).asScala.toMap
     val model = schemas.get("ModelWOptionString")
-    model should be('defined)
+    model shouldBe defined
     model.get.getProperties should not be(null)
     val stringOpt = model.get.getProperties().get("stringOpt")
     stringOpt should not be (null)
@@ -43,7 +43,7 @@ class ModelPropertyParserTest extends AnyFlatSpec with Matchers {
     val converter = ModelConverters.getInstance()
     val schemas = converter.readAll(classOf[ModelWOptionModel]).asScala.toMap
     val model = schemas.get("ModelWOptionModel")
-    model should be ('defined)
+    model shouldBe defined
     model.get.getProperties should not be (null)
     val modelOpt = model.get.getProperties().get("modelOpt")
     modelOpt should not be (null)
@@ -56,7 +56,7 @@ class ModelPropertyParserTest extends AnyFlatSpec with Matchers {
     val converter = ModelConverters.getInstance()
     val schemas = converter.readAll(classOf[TestModelWithBigDecimal]).asScala.toMap
     val model = findModel(schemas, "TestModelWithBigDecimal")
-    model should be ('defined)
+    model shouldBe defined
     model.get.getProperties should not be (null)
     val field = model.get.getProperties().get("field")
     field shouldBe a [NumberSchema]
@@ -69,7 +69,7 @@ class ModelPropertyParserTest extends AnyFlatSpec with Matchers {
     val converter = ModelConverters.getInstance()
     val schemas = converter.readAll(classOf[TestModelWithBigInt]).asScala.toMap
     val model = findModel(schemas, "TestModelWithBigInt")
-    model should be ('defined)
+    model shouldBe defined
     model.get.getProperties should not be (null)
     val field = model.get.getProperties().get("field")
     field shouldBe a [IntegerSchema]
@@ -80,7 +80,7 @@ class ModelPropertyParserTest extends AnyFlatSpec with Matchers {
     val converter = ModelConverters.getInstance()
     val schemas = converter.readAll(classOf[ModelWOptionBigDecimal]).asScala.toMap
     val model = schemas.get("ModelWOptionBigDecimal")
-    model should be ('defined)
+    model shouldBe defined
     model.get.getProperties should not be (null)
     val optBigDecimal = model.get.getProperties().get("optBigDecimal")
     optBigDecimal should not be (null)
@@ -92,7 +92,7 @@ class ModelPropertyParserTest extends AnyFlatSpec with Matchers {
     val converter = ModelConverters.getInstance()
     val schemas = converter.readAll(classOf[ModelWOptionBigInt]).asScala.toMap
     val model = schemas.get("ModelWOptionBigInt")
-    model should be ('defined)
+    model shouldBe defined
     model.get.getProperties should not be (null)
     val optBigDecimal = model.get.getProperties().get("optBigInt")
     optBigDecimal should not be (null)
@@ -104,7 +104,7 @@ class ModelPropertyParserTest extends AnyFlatSpec with Matchers {
     val converter = ModelConverters.getInstance()
     val schemas = converter.readAll(classOf[ModelWOptionInt]).asScala.toMap
     val model = schemas.get("ModelWOptionInt")
-    model should be ('defined)
+    model shouldBe defined
     model.get.getProperties should not be (null)
     val optInt = model.get.getProperties().get("optInt")
     optInt should not be (null)
@@ -116,7 +116,7 @@ class ModelPropertyParserTest extends AnyFlatSpec with Matchers {
     val converter = ModelConverters.getInstance()
     val schemas = converter.readAll(classOf[ModelWOptionBoolean]).asScala.toMap
     val model = schemas.get("ModelWOptionBoolean")
-    model should be ('defined)
+    model shouldBe defined
     model.get.getProperties should not be (null)
     val optBoolean = model.get.getProperties().get("optBoolean")
     optBoolean should not be (null)

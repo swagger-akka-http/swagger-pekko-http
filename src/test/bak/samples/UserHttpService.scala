@@ -29,8 +29,8 @@ import io.swagger.annotations._
 trait UserHttpService
     extends Directives
     with ModelFormats {
-  implicit val actorSystem = ActorSystem("mysystem")
-  implicit val materializer = ActorMaterializer()
+  implicit val actorSystem: ActorSystem = ActorSystem("mysystem")
+  implicit val materializer: ActorMaterializer = ActorMaterializer()
   @ApiOperation(value = "Updated user", notes = "This can only be done by the logged in user.", nickname = "updateUser", httpMethod = "PUT")
   @ApiImplicitParams(Array(
     new ApiImplicitParam(name = "username", value = "ID of user that needs to be updated", required = true, dataType = "string", paramType = "path"),
@@ -54,7 +54,7 @@ trait UserHttpService
   def getUser = post {
     path("/user" / Segment) { id ⇒
       {
-        formFields('name, 'status) { (name, status) ⇒
+        formFields("name", "status") { (name, status) ⇒
           complete("ok")
         }
       }

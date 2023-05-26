@@ -18,8 +18,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse
 trait DictHttpService
     extends Directives
     with ModelFormats {
-  implicit val actorSystem = ActorSystem("mysystem")
-  implicit val materializer = ActorMaterializer()
+  implicit val actorSystem: ActorSystem = ActorSystem("mysystem")
+  implicit val materializer: ActorMaterializer = ActorMaterializer()
 
   val me = DictEntry("", "", None)
 
