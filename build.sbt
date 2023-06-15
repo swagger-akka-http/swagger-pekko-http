@@ -5,15 +5,15 @@ organization := "com.github.swagger-akka-http"
 
 name := "swagger-pekko-http"
 
-val swaggerVersion = "2.2.10"
+val swaggerVersion = "2.2.12"
 val pekkoVersion = "0.0.0+26669-ec5b6764-SNAPSHOT"
 val pekkoHttpVersion = "0.0.0+4411-6fe04045-SNAPSHOT"
-val jacksonVersion = "2.14.3"
+val jacksonVersion = "2.15.2"
 val slf4jVersion = "2.0.7"
-val scala213 = "2.13.10"
+val scala213 = "2.13.11"
 
 ThisBuild / scalaVersion := scala213
-ThisBuild / crossScalaVersions := Seq(scala213, "2.12.17", "3.3.0")
+ThisBuild / crossScalaVersions := Seq(scala213, "2.12.18", "3.3.0")
 
 update / checksums := Nil
 
@@ -54,12 +54,12 @@ libraryDependencies ++= Seq(
   "io.swagger.core.v3" % "swagger-annotations-jakarta" % swaggerVersion,
   "io.swagger.core.v3" % "swagger-models-jakarta" % swaggerVersion,
   "io.swagger.core.v3" % "swagger-jaxrs2-jakarta" % swaggerVersion,
-  "com.github.swagger-akka-http" %% "swagger-scala-module" % "2.10.0",
+  "com.github.swagger-akka-http" %% "swagger-scala-module" % "2.11.0",
   "org.slf4j" % "slf4j-api" % slf4jVersion,
   "com.fasterxml.jackson.module" %% "jackson-module-scala" % jacksonVersion,
   "com.fasterxml.jackson.dataformat" % "jackson-dataformat-yaml" % jacksonVersion,
   "org.scala-lang.modules" %% "scala-java8-compat" % "1.0.2",
-  "org.scalatest" %% "scalatest" % "3.2.15" % Test,
+  "org.scalatest" %% "scalatest" % "3.2.16" % Test,
   "org.json4s" %% "json4s-native" % "4.0.6" % Test,
   "jakarta.ws.rs" % "jakarta.ws.rs-api" % "3.0.0" % Test,
   "joda-time" % "joda-time" % "2.12.4" % Test,
