@@ -114,9 +114,11 @@ ThisBuild / githubWorkflowPublishTargetBranches := Seq(
   RefPredicate.StartsWith(Ref.Tag("v"))
 )
 
+/*
 ThisBuild / githubWorkflowBuildPostamble := Seq(
   WorkflowStep.Use(Public("codecov", "codecov-action", "v3"), Map("fail_ci_if_error" -> "true"))
 )
+*/
 
 ThisBuild / githubWorkflowPublish := Seq(
   WorkflowStep.Sbt(
