@@ -33,8 +33,8 @@ apiMappings ++= {
 
   val mappings: Seq[(File, URL)] =
     mappingsFor("org.scala-lang", List("scala-library"), "https://scala-lang.org/api/%s/") ++
-      //mappingsFor("com.typesafe.akka", List("akka-actor", "akka-stream"), "https://doc.akka.io/api/akka/%s/") ++
-      //mappingsFor("com.typesafe.akka", List("akka-http"), "https://doc.akka.io/api/akka-http/%s/") ++
+      mappingsFor("org.apache.pekko", List("pekko-actor", "pekko-stream"), "https://pekko.apache.org/api/pekko/%s/") ++
+      mappingsFor("org.apache.pekko", List("pekko-http"), "https://pekko.apache.org/api/pekko-http/%s/") ++
       mappingsFor("io.swagger.core.v3", List("swagger-core-jakarta"), "https://javadoc.io/doc/io.swagger.core.v3/swagger-core/%s/") ++
       mappingsFor("io.swagger.core.v3", List("swagger-jaxrs2-jakarta"), "https://javadoc.io/doc/io.swagger.core.v3/swagger-jaxrs2/%s/") ++
       mappingsFor("io.swagger.core.v3", List("swagger-models-jakarta"), "https://javadoc.io/doc/io.swagger.core.v3/swagger-models/%s/") ++
