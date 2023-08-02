@@ -1,10 +1,6 @@
 ![Build Status](https://github.com/swagger-akka-http/swagger-pekko-http/actions/workflows/ci.yml/badge.svg)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.swagger-akka-http/swagger-pekko-http_2.13/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.swagger-akka-http/swagger-pekko-http_2.13)
 [![Sonatype Snapshots](https://img.shields.io/nexus/s/https/oss.sonatype.org/com.github.swagger-akka-http/swagger-pekko-http_2.13.svg)](https://oss.sonatype.org/content/repositories/snapshots/com/github/swagger-akka-http/swagger-pekko-http_2.13/)
-<!--
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/swagger-akka-http/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.swagger-akka-http/swagger-akka-http_2.13/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.swagger-akka-http/swagger-akka-http_2.13)
-[![codecov.io](https://codecov.io/gh/swagger-akka-http/swagger-akka-http/coverage.svg?branch=main)](https://codecov.io/gh/swagger-akka-http/swagger-akka-http/branch/main)
--->
 # swagger-pekko-http
 
 Swagger-Pekko-Http brings [Swagger](https://swagger.io/swagger-core/) support for [Pekko-Http](https://github.com/apache/incubator-pekko-http) Apis. The included `SwaggerHttpService` route will inspect Scala types with Swagger annotations and build a swagger compliant endpoint for a [swagger compliant ui](https://petstore.swagger.io/).
@@ -21,7 +17,7 @@ The [OpenAPI spec](https://swagger.io/specification/) is helpful for understandi
 The jars are hosted on [sonatype](https://oss.sonatype.org) and mirrored to Maven Central. Snapshot releases are also hosted on sonatype. 
 
 ```sbt
-libraryDependencies += "com.github.swagger-akka-http" %% "swagger-pekko-http" % "<release-version>"
+libraryDependencies += "com.github.swagger-akka-http" %% "swagger-pekko-http" % "2.11.0"
 ```
 
 ## Examples
