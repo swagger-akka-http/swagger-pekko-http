@@ -6,8 +6,8 @@ organization := "com.github.swagger-akka-http"
 name := "swagger-pekko-http"
 
 val swaggerVersion = "2.2.15"
-val pekkoVersion = "1.0.0"
-val pekkoHttpVersion = "0.0.0+4468-963bd592-SNAPSHOT"
+val pekkoVersion = "1.0.1"
+val pekkoHttpVersion = "1.0.0"
 val jacksonVersion = "2.15.2"
 val slf4jVersion = "2.0.7"
 val scala213 = "2.13.11"
@@ -18,7 +18,7 @@ ThisBuild / crossScalaVersions := Seq(scala213, "2.12.18", "3.3.0")
 update / checksums := Nil
 
 //resolvers ++= Resolver.sonatypeOssRepos("snapshots")
-resolvers += "Apache Snapshot Repo" at "https://repository.apache.org/content/groups/snapshots/"
+//resolvers += "Apache Snapshot Repo" at "https://repository.apache.org/content/groups/snapshots/"
 
 autoAPIMappings := true
 
