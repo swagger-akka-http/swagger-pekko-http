@@ -1,6 +1,6 @@
 addSbtPlugin("org.scoverage" % "sbt-scoverage" % "2.0.9")
 
-addSbtPlugin("org.typelevel" % "sbt-typelevel-sonatype-ci-release" % "0.6.0")
+addSbtPlugin("com.github.sbt" % "sbt-github-actions" % "0.19.0")
 
 addSbtPlugin("com.github.sbt" % "sbt-ci-release" % "1.5.12")
 

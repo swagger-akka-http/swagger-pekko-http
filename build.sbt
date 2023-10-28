@@ -1,5 +1,5 @@
-import org.typelevel.sbt.gha.JavaSpec.Distribution.Zulu
-import org.typelevel.sbt.gha.UseRef.Public
+import sbtghactions.JavaSpec.Distribution.Zulu
+import sbtghactions.UseRef.Public
 
 organization := "com.github.swagger-akka-http"
 
@@ -105,9 +105,9 @@ pomExtra := (
 
 MetaInfLicenseCopy.settings
 
-ThisBuild / tlSonatypeUseLegacyHost := true
 ThisBuild / githubWorkflowBuild := Seq(WorkflowStep.Sbt(List("coverage", "test", "coverageReport")))
 ThisBuild / githubWorkflowJavaVersions := Seq(JavaSpec(Zulu, "8"), JavaSpec(Zulu, "11"), JavaSpec(Zulu, "17"))
+ThisBuild / githubWorkflowTargetTags ++= Seq("v*")
 ThisBuild / githubWorkflowPublishTargetBranches := Seq(
   RefPredicate.Equals(Ref.Branch("main")),
   RefPredicate.Equals(Ref.Branch("swagger-1.5")),
