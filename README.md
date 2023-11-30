@@ -17,7 +17,7 @@ The [OpenAPI spec](https://swagger.io/specification/) is helpful for understandi
 The jars are hosted on [sonatype](https://oss.sonatype.org) and mirrored to Maven Central. Snapshot releases are also hosted on sonatype. 
 
 ```sbt
-libraryDependencies += "com.github.swagger-akka-http" %% "swagger-pekko-http" % "2.11.0"
+libraryDependencies += "com.github.swagger-akka-http" %% "swagger-pekko-http" % "2.12.0"
 ```
 
 ## Examples
