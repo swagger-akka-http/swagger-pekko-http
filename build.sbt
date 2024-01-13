@@ -5,11 +5,11 @@ organization := "com.github.swagger-akka-http"
 
 name := "swagger-pekko-http"
 
-val swaggerVersion = "2.2.19"
+val swaggerVersion = "2.2.20"
 val pekkoVersion = "1.0.2"
 val pekkoHttpVersion = "1.0.0"
 val jacksonVersion = "2.16.1"
-val slf4jVersion = "2.0.9"
+val slf4jVersion = "2.0.11"
 val scala213 = "2.13.12"
 
 ThisBuild / scalaVersion := scala213
@@ -62,7 +62,7 @@ libraryDependencies ++= Seq(
   "org.scalatest" %% "scalatest" % "3.2.17" % Test,
   "org.json4s" %% "json4s-native" % "4.0.7" % Test,
   "jakarta.ws.rs" % "jakarta.ws.rs-api" % "3.0.0" % Test,
-  "joda-time" % "joda-time" % "2.12.5" % Test,
+  "joda-time" % "joda-time" % "2.12.6" % Test,
   "org.joda" % "joda-convert" % "2.2.3" % Test,
   "org.slf4j" % "slf4j-simple" % slf4jVersion % Test
 )
