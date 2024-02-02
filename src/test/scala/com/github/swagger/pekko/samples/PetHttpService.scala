@@ -16,7 +16,6 @@
 package com.github.swagger.pekko.samples
 
 import org.apache.pekko.http.scaladsl.server.Directives
-import org.apache.pekko.stream.ActorMaterializer
 import org.apache.pekko.actor.ActorSystem
 import io.swagger.v3.oas.annotations.enums.ParameterIn
 import io.swagger.v3.oas.annotations.{Operation, Parameter}
@@ -32,7 +31,6 @@ trait PetHttpService
     with ModelFormats {
 
   implicit val actorSystem: ActorSystem = ActorSystem("mysystem")
-  implicit val materializer: ActorMaterializer = ActorMaterializer()
 
   @Operation(summary = "Find a pet by ID",
     description = "Returns a pet based on ID",

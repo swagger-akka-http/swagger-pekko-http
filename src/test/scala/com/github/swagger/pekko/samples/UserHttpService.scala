@@ -17,7 +17,6 @@ package com.github.swagger.pekko.samples
 
 import org.apache.pekko.actor.ActorSystem
 import org.apache.pekko.http.scaladsl.server.Directives
-import org.apache.pekko.stream.ActorMaterializer
 import jakarta.ws.rs.Path
 
 //@Api(value = "/user", description = "Operations about users.", produces = "application/json")
@@ -27,7 +26,6 @@ trait UserHttpService
   extends Directives
     with ModelFormats {
   implicit val actorSystem: ActorSystem = ActorSystem("mysystem")
-  implicit val materializer: ActorMaterializer = ActorMaterializer()
 
 //  @ApiOperation(value = "Updated user", notes = "This can only be done by the logged in user.", nickname = "updateUser", httpMethod = "PUT")
 //  @ApiImplicitParams(Array(

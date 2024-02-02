@@ -1,7 +1,6 @@
 package com.github.swagger.pekko.samples
 
 import org.apache.pekko.http.scaladsl.server.Directives
-import org.apache.pekko.stream.ActorMaterializer
 import org.apache.pekko.actor.ActorSystem
 import org.apache.pekko.http.scaladsl.marshalling.ToResponseMarshallable.apply
 import org.apache.pekko.http.scaladsl.server.Directive.addByNameNullaryApply
@@ -19,7 +18,6 @@ trait DictHttpService
     extends Directives
     with ModelFormats {
   implicit val actorSystem: ActorSystem = ActorSystem("mysystem")
-  implicit val materializer: ActorMaterializer = ActorMaterializer()
 
   val me = DictEntry("", "", None)
 
