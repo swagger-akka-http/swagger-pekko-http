@@ -12,7 +12,6 @@ import io.swagger.v3.oas.annotations.media.{Content, Schema}
 import io.swagger.v3.oas.annotations.parameters.RequestBody
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 
-//@Api(value = "/dict", description = "This is a dictionary api.")
 @Path("/dict")
 trait DictHttpService
     extends Directives

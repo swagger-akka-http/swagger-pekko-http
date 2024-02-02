@@ -35,10 +35,10 @@ class ModelToolSpec extends AnyWordSpec with Matchers {
         override val apiClasses: Set[Class[_]] = Set(classOf[PetHttpService], classOf[UserHttpService])
       }
       swaggerService.filteredSwagger should not be (null)
-//      swaggerService.filteredSwagger.getComponents should not be (null)
-//      val definitions = swaggerService.filteredSwagger.getComponents.getSchemas
-//      definitions should not be null
-//      definitions should have size 4
+      //swaggerService.filteredSwagger.getComponents should not be (null)
+      //val definitions = swaggerService.filteredSwagger.getComponents.getSchemas
+      //definitions should not be null
+      //definitions should have size 4
 //      val smap = asScala(definitions)
 //      smap should contain theSameElementsAs definitions.asScala
     }
