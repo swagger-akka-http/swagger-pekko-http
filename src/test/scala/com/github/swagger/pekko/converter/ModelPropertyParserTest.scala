@@ -134,7 +134,7 @@ class ModelPropertyParserTest extends AnyFlatSpec with Matchers {
     model.get.getProperties should not be (null)
     val optBoolean = model.get.getProperties().get("optBoolean")
     optBoolean should not be (null)
-    optBoolean shouldBe a [Schema[_]]
+    optBoolean shouldBe a [BooleanSchema]
     nullSafeList(model.get.getRequired) shouldBe empty
   }
 
