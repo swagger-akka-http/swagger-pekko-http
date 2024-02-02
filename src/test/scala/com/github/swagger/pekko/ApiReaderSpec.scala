@@ -19,6 +19,7 @@ import com.github.swagger.pekko.samples._
 import io.swagger.v3.jaxrs2.Reader
 import io.swagger.v3.oas.models.OpenAPI
 import io.swagger.v3.oas.models.info.Info
+import io.swagger.v3.oas.models.servers.Server
 
 import scala.collection.JavaConverters._
 import org.scalatest.matchers.should.Matchers
@@ -175,15 +176,19 @@ class ApiReaderSpec
     }
 
     "passed a properly annotated HttpService with multiple schemes" should {
+      val s1 = new Server()
+      s1.setUrl("http://www.example.com")
+      val s2 = new Server()
+      s2.setUrl("https://www.example.com")
+      val servers = List(s1, s2)
       val apiConfig = new OpenAPI()
-        //.host(HOST)
-        //.schemes(List(Scheme.HTTP, Scheme.HTTPS).asJava)
+        .servers(servers.asJava)
         .info(apiInfo)
       val reader = new Reader(apiConfig)
       val api = reader.read(Set[Class[_]](classOf[DictHttpService]).asJava)
 
       "set the schemes" in {
-        //api.getSchemes() shouldBe List(Scheme.HTTP, Scheme.HTTPS).asJava
+        api.getServers.asScala shouldEqual servers
       }
     }
 
