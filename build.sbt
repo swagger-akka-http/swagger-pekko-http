@@ -63,7 +63,7 @@ libraryDependencies ++= Seq(
   "org.json4s" %% "json4s-native" % "4.0.7" % Test,
   "jakarta.ws.rs" % "jakarta.ws.rs-api" % "3.0.0" % Test,
   "joda-time" % "joda-time" % "2.13.0" % Test,
-  "org.joda" % "joda-convert" % "2.2.3" % Test,
+  "org.joda" % "joda-convert" % "2.2.4" % Test,
   "org.slf4j" % "slf4j-simple" % slf4jVersion % Test
 )
 
