@@ -8,7 +8,7 @@ name := "swagger-pekko-http"
 val swaggerVersion = "2.2.36"
 val pekkoVersion = "1.1.5"
 val pekkoHttpVersion = "1.2.0"
-val jacksonVersion = "2.19.2"
+val jacksonVersion = "2.20.0"
 val slf4jVersion = "2.0.17"
 val scala213 = "2.13.16"
 
