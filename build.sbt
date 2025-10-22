@@ -105,7 +105,6 @@ pomExtra := (
 
 MetaInfLicenseCopy.settings
 
-ThisBuild / githubWorkflowBuild := Seq(WorkflowStep.Sbt(List("coverage", "test", "coverageReport")))
 ThisBuild / githubWorkflowJavaVersions := Seq(JavaSpec(Zulu, "8"), JavaSpec(Zulu, "11"), JavaSpec(Zulu, "17"))
 ThisBuild / githubWorkflowTargetTags ++= Seq("v*")
 ThisBuild / githubWorkflowPublishTargetBranches := Seq(
@@ -113,12 +112,6 @@ ThisBuild / githubWorkflowPublishTargetBranches := Seq(
   RefPredicate.Equals(Ref.Branch("swagger-1.5")),
   RefPredicate.StartsWith(Ref.Tag("v"))
 )
-
-/*
-ThisBuild / githubWorkflowBuildPostamble := Seq(
-  WorkflowStep.Use(Public("codecov", "codecov-action", "v3"), Map("fail_ci_if_error" -> "true"))
-)
-*/
 
 ThisBuild / githubWorkflowPublish := Seq(
   WorkflowStep.Sbt(
