@@ -1,5 +1,5 @@
 ![Build Status](https://github.com/swagger-akka-http/swagger-pekko-http/actions/workflows/ci.yml/badge.svg)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.swagger-akka-http/swagger-pekko-http_2.13/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.swagger-akka-http/swagger-pekko-http_2.13)
+[![Maven Central](https://maven-badges.sml.io/sonatype-central/com.github.swagger-akka-http/swagger-pekko-http_2.13/badge.svg)](https://maven-badges.sml.io/sonatype-central/com.github.swagger-akka-http/swagger-pekko-http_2.13)
 [![Sonatype Snapshots](https://img.shields.io/nexus/s/https/oss.sonatype.org/com.github.swagger-akka-http/swagger-pekko-http_2.13.svg)](https://oss.sonatype.org/content/repositories/snapshots/com/github/swagger-akka-http/swagger-pekko-http_2.13/)
 # swagger-pekko-http
 
