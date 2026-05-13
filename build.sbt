@@ -6,10 +6,10 @@ organization := "com.github.swagger-akka-http"
 name := "swagger-pekko-http"
 
 val swaggerVersion = "2.2.50"
-val pekkoVersion = "1.5.0"
+val pekkoVersion = "1.6.0"
 val pekkoHttpVersion = "1.3.0"
 val jacksonVersion = "2.21.3"
-val slf4jVersion = "2.0.17"
+val slf4jVersion = "2.0.18"
 val scala213 = "2.13.18"
 
 ThisBuild / scalaVersion := scala213
