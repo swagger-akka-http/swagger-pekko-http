@@ -13,7 +13,7 @@ val slf4jVersion = "2.0.18"
 val scala213 = "2.13.18"
 
 ThisBuild / scalaVersion := scala213
-ThisBuild / crossScalaVersions := Seq(scala213, "2.12.21", "3.3.7")
+ThisBuild / crossScalaVersions := Seq(scala213, "2.12.21", "3.3.8")
 
 update / checksums := Nil
 
