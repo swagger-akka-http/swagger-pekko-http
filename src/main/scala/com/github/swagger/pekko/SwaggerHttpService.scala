@@ -15,8 +15,11 @@ package com.github.swagger.pekko
 
 import org.apache.pekko.http.scaladsl.model.{HttpEntity, MediaTypes}
 import org.apache.pekko.http.scaladsl.server.{Directives, PathMatchers, Route}
+import com.fasterxml.jackson.databind.{JsonNode, ObjectMapper}
+import com.fasterxml.jackson.module.scala.DefaultScalaModule
 import com.github.swagger.pekko.model.{Info, asScala}
-import io.swagger.v3.core.util.{Json, Json31, Yaml, Yaml31}
+import com.github.swagger.scala.converter.SwaggerScalaModelConverter
+import io.swagger.v3.core.util.{Json31, Yaml, Yaml31}
 import io.swagger.v3.jaxrs2.Reader
 import io.swagger.v3.oas.integration.SwaggerConfiguration
 import io.swagger.v3.oas.models.security.{SecurityRequirement, SecurityScheme}
@@ -41,6 +44,35 @@ object SwaggerHttpService {
 
   private[pekko] def apiDocsBase(path: String) = PathMatchers.separateOnSlashes(removeInitialSlashIfNecessary(path))
   private[pekko] val logger = LoggerFactory.getLogger(classOf[SwaggerHttpService])
+
+  /**
+   * The Jackson mappers used to write the generated document. They are built from swagger-scala-module's
+   * [[SwaggerScalaModelConverter.createObjectMapper]] rather than swagger-core's global `Json.mapper()`: the module no
+   * longer registers its Scala module on that mapper, and its own copy also carries any customizer registered via
+   * `SwaggerScalaModelConverter.setObjectMapperCustomizer`, so Scala values that end up in the document (vendor
+   * extensions, examples, defaults) serialize the same way the model was introspected. The YAML mappers are the same
+   * mappers with swagger-core's YAML factory, which is the only difference between `Json.mapper()` and `Yaml.mapper()`.
+   *
+   * `createObjectMapper()` is based on `Json.mapper()`, whose mixins and serializers are OpenAPI 3.0 specific, so the
+   * 3.1 mappers add the Scala module to `Json31.mapper()` themselves and do not see the customizer.
+   */
+  private lazy val jsonMapper: ObjectMapper = SwaggerScalaModelConverter.createObjectMapper()
+  private lazy val json31Mapper: ObjectMapper = Json31.mapper().copy().registerModule(DefaultScalaModule)
+  private lazy val yamlMapper: ObjectMapper = jsonMapper.copyWith(Yaml.mapper().getFactory.copy())
+  private lazy val yaml31Mapper: ObjectMapper = json31Mapper.copyWith(Yaml31.mapper().getFactory.copy())
+
+  private[pekko] def objectMapper(specVersion: SpecVersion): ObjectMapper =
+    if (specVersion == SpecVersion.V31) json31Mapper else jsonMapper
+  private[pekko] def yamlObjectMapper(specVersion: SpecVersion): ObjectMapper =
+    if (specVersion == SpecVersion.V31) yaml31Mapper else yamlMapper
+
+  /**
+   * swagger-core's `Reader` deep-copies the configured `OpenAPI` through its global `Json.mapper()`, which knows
+   * nothing about Scala types, so values that reach it from Scala are first turned into Jackson trees with the
+   * Scala-aware mapper. A tree serializes the same way with any mapper.
+   */
+  private[pekko] def toJsonNode(specVersion: SpecVersion, value: AnyRef): JsonNode =
+    objectMapper(specVersion).valueToTree[JsonNode](value)
 }
 
 trait SwaggerGenerator {
@@ -113,7 +145,7 @@ trait SwaggerGenerator {
 
     securitySchemes.foreach { case (k: String, v: SecurityScheme) => swagger.schemaRequirement(k, v) }
     swagger.setSecurity(asJavaMutableList(security))
-    swagger.extensions(asJavaMutableMap(vendorExtensions))
+    swagger.extensions(asJavaMutableMap(vendorExtensions.map { case (k, v) => k -> toJsonNode(specVersion, v) }))
 
     externalDocs.foreach { ed => swagger.setExternalDocs(ed) }
     swagger
@@ -129,8 +161,7 @@ trait SwaggerGenerator {
 
   def generateSwaggerJson: String = {
     try {
-      val objectWriter = if (specVersion == SpecVersion.V31) Json31.pretty() else Json.pretty()
-      objectWriter.writeValueAsString(filteredSwagger)
+      objectMapper(specVersion).writerWithDefaultPrettyPrinter().writeValueAsString(filteredSwagger)
     } catch {
       case NonFatal(t) => {
         logger.error("Issue with creating swagger.json", t)
@@ -141,8 +172,7 @@ trait SwaggerGenerator {
 
   def generateSwaggerYaml: String = {
     try {
-      val objectWriter = if (specVersion == SpecVersion.V31) Yaml31.pretty() else Yaml.pretty()
-      objectWriter.writeValueAsString(filteredSwagger)
+      yamlObjectMapper(specVersion).writerWithDefaultPrettyPrinter().writeValueAsString(filteredSwagger)
     } catch {
       case NonFatal(t) => {
         logger.error("Issue with creating swagger.yaml", t)
