@@ -299,6 +299,42 @@ class SwaggerHttpServiceSpec
       }
     }
 
+    "defining vendor extensions with Scala values" should {
+      def scalaExtensionsService(version: SpecVersion) = new SwaggerHttpService {
+        override val apiClasses: Set[Class[_]] = Set(classOf[UserHttpService])
+        override val apiDocsPath = "api-doc"
+        override val specVersion = version
+        override val vendorExtensions = ListMap("x-tags" -> List("a", "b"),
+                                                "x-owner" -> Some("team"),
+                                                "x-meta" -> Map("k" -> 1))
+      }
+      def checkTree(tree: com.fasterxml.jackson.databind.JsonNode) = {
+        tree.get("x-tags").isArray shouldBe true
+        tree.get("x-tags").get(0).asText() shouldEqual "a"
+        tree.get("x-tags").get(1).asText() shouldEqual "b"
+        tree.get("x-owner").asText() shouldEqual "team"
+        tree.get("x-meta").get("k").asInt() shouldEqual 1
+      }
+      Seq(SpecVersion.V30, SpecVersion.V31).foreach { version =>
+        s"serialize Scala collections and options as json ($version)" in {
+          val swaggerService = scalaExtensionsService(version)
+          Get(s"/${swaggerService.apiDocsPath}/swagger.json") ~> swaggerService.routes ~> check {
+            handled shouldBe true
+            contentType shouldBe ContentTypes.`application/json`
+            checkTree(io.swagger.v3.core.util.Json.mapper().readTree(responseAs[String]))
+          }
+        }
+        s"serialize Scala collections and options as yaml ($version)" in {
+          val swaggerService = scalaExtensionsService(version)
+          Get(s"/${swaggerService.apiDocsPath}/swagger.yaml") ~> swaggerService.routes ~> check {
+            handled shouldBe true
+            contentType.toString() shouldBe CustomMediaTypes.`text/vnd.yaml`.toString()
+            checkTree(io.swagger.v3.core.util.Yaml.mapper().readTree(responseAs[String]))
+          }
+        }
+      }
+    }
+
     "defining relative paths" should {
       val swaggerService = new SwaggerHttpService {
         override val apiClasses: Set[Class[_]] = Set(classOf[UserHttpService])
