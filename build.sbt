@@ -56,7 +56,7 @@ libraryDependencies ++= Seq(
   "io.swagger.core.v3" % "swagger-jaxrs2-jakarta" % swaggerVersion,
   "com.github.swagger-akka-http" %% "swagger-scala-module" % "2.16.1",
   "org.slf4j" % "slf4j-api" % slf4jVersion,
-  "com.fasterxml.jackson.module" %% "jackson-module-scala" % jacksonVersion,
+  "com.fasterxml.jackson.module" %% "jackson-module-scala" % "2.22.3.1",
   "com.fasterxml.jackson.dataformat" % "jackson-dataformat-yaml" % jacksonVersion,
   "org.scala-lang.modules" %% "scala-java8-compat" % "1.0.2",
   "org.scalatest" %% "scalatest" % "3.2.20" % Test,
