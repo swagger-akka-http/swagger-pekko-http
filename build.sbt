@@ -10,7 +10,7 @@ val pekkoVersion = "1.7.1"
 val pekkoHttpVersion = "1.4.2"
 val jacksonVersion = "2.22.3"
 val slf4jVersion = "2.0.20"
-val scala213 = "2.13.18"
+val scala213 = "3.10.0"
 
 ThisBuild / scalaVersion := scala213
 ThisBuild / crossScalaVersions := Seq(scala213, "2.12.21", "3.3.8")
