@@ -6,14 +6,14 @@ organization := "com.github.swagger-akka-http"
 name := "swagger-pekko-http"
 
 val swaggerVersion = "2.2.55"
-val pekkoVersion = "1.7.1"
-val pekkoHttpVersion = "1.4.2"
+val pekkoVersion = "2.0.0-M4"
+val pekkoHttpVersion = "2.0.0-M2"
 val jacksonVersion = "2.22.3"
 val slf4jVersion = "2.0.20"
 val scala213 = "2.13.18"
 
 ThisBuild / scalaVersion := scala213
-ThisBuild / crossScalaVersions := Seq(scala213, "2.12.21", "3.3.9")
+ThisBuild / crossScalaVersions := Seq(scala213, "3.3.9")
 
 update / checksums := Nil
 
@@ -105,7 +105,7 @@ pomExtra := (
 
 MetaInfLicenseCopy.settings
 
-ThisBuild / githubWorkflowJavaVersions := Seq(JavaSpec(Zulu, "8"), JavaSpec(Zulu, "11"), JavaSpec(Zulu, "17"))
+ThisBuild / githubWorkflowJavaVersions := Seq(JavaSpec(Zulu, "17"))
 ThisBuild / githubWorkflowTargetTags ++= Seq("v*")
 ThisBuild / githubWorkflowPublishTargetBranches := Seq(
   RefPredicate.Equals(Ref.Branch("main")),
