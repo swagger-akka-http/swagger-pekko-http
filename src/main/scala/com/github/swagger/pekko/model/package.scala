@@ -13,13 +13,13 @@
  */
 package com.github.swagger.pekko
 
-import scala.collection.JavaConverters._
-import scala.compat.java8.OptionConverters._
+import scala.jdk.CollectionConverters._
+import scala.jdk.OptionConverters._
 import scala.language.implicitConversions
 import io.swagger.v3.oas.models.info.{
-  Info ⇒ SwaggerInfo,
-  Contact ⇒ SwaggerContact,
-  License ⇒ SwaggerLicense
+  Info => SwaggerInfo,
+  Contact => SwaggerContact,
+  License => SwaggerLicense
 }
 
 /**
@@ -98,5 +98,5 @@ package object model {
     case None => Set.empty[T]
     case Some(js) => js.asScala.toSet
   }
-  def asScala[T](jopt: java.util.Optional[T]): Option[T] = Option(jopt) flatMap { opt => opt.asScala }
+  def asScala[T](jopt: java.util.Optional[T]): Option[T] = Option(jopt) flatMap { opt => opt.toScala }
 }

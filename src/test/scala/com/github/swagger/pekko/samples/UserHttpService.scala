@@ -35,7 +35,7 @@ trait UserHttpService
 //    new ApiResponse(code = 404, message = "User not found"),
 //    new ApiResponse(code = 400, message = "Invalid username supplied")))
   def readRoute = put {
-    path("/user" / Segment) { id ⇒
+    path("/user" / Segment) { id =>
       complete(id)
     }
   }
@@ -48,9 +48,9 @@ trait UserHttpService
 //  @ApiResponses(Array(
 //    new ApiResponse(code = 404, message = "User does not exist.")))
   def getUser = post {
-    path("/user" / Segment) { id ⇒
+    path("/user" / Segment) { id =>
     {
-      formFields("name", "status") { (name, status) ⇒
+      formFields("name", "status") { (name, status) =>
         complete("ok")
       }
     }

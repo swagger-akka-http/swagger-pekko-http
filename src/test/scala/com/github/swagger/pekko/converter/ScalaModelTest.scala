@@ -8,7 +8,7 @@ import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 
 import scala.annotation.meta.field
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 
 class ScalaModelTest extends AnyFlatSpec with Matchers {
 

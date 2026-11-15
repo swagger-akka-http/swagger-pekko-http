@@ -17,7 +17,7 @@ import org.json4s._
 import org.json4s.native.JsonMethods._
 import org.scalatest.BeforeAndAfterAll
 
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 import scala.collection.immutable.ListMap
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
