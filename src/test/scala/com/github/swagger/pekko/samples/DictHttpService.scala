@@ -34,7 +34,7 @@ trait DictHttpService
   )
   def createRoute = post {
     path("/dict") {
-      entity(as[DictEntry]) { e ⇒
+      entity(as[DictEntry]) { e =>
         dict += e.key -> e.value
         complete("ok")
       }
@@ -52,7 +52,7 @@ trait DictHttpService
       new ApiResponse(responseCode = "404", description = "Dictionary does not exist."))
   )
   def readRoute = get {
-    path("/dict" / Segment) { key ⇒
+    path("/dict" / Segment) { key =>
       complete(dict(key))
     }
   }

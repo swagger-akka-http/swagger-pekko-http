@@ -17,9 +17,9 @@ import scala.jdk.CollectionConverters._
 import scala.jdk.OptionConverters._
 import scala.language.implicitConversions
 import io.swagger.v3.oas.models.info.{
-  Info ⇒ SwaggerInfo,
-  Contact ⇒ SwaggerContact,
-  License ⇒ SwaggerLicense
+  Info => SwaggerInfo,
+  Contact => SwaggerContact,
+  License => SwaggerLicense
 }
 
 /**

@@ -17,7 +17,7 @@ import org.json4s._
 import org.json4s.native.JsonMethods._
 import org.scalatest.BeforeAndAfterAll
 
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 import scala.collection.immutable.ListMap
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
@@ -240,6 +240,12 @@ class SwaggerHttpServiceSpec
       }
       "removeInitialSlashIfNecessary does not need to remove a slash" in {
         SwaggerHttpService.removeInitialSlashIfNecessary("api-doc") should equal ("api-doc")
+      }
+      "removeTrailingSlashIfNecessary removes trailing slashes" in {
+        SwaggerHttpService.removeTrailingSlashIfNecessary("api.example.com//") should equal ("api.example.com")
+      }
+      "removeTrailingSlashIfNecessary does not need to remove a slash" in {
+        SwaggerHttpService.removeTrailingSlashIfNecessary("api.example.com") should equal ("api.example.com")
       }
     }
 

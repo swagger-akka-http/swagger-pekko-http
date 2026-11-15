@@ -45,7 +45,7 @@ trait PetHttpService
     )
   )
   def readRoute = get {
-    path("/pet" / Segment) { id ⇒
+    path("/pet" / Segment) { id =>
       complete(id)
     }
   }
@@ -61,8 +61,8 @@ trait PetHttpService
     responses = Array(new ApiResponse(responseCode = "404", description = "Pet does not exist."))
   )
   def updateRoute = post {
-    path("/pet" / Segment) { id ⇒
-      formFields("name", "status") { (name, status) ⇒
+    path("/pet" / Segment) { id =>
+      formFields("name", "status") { (name, status) =>
         complete("ok")
       }
     }
@@ -75,7 +75,7 @@ trait PetHttpService
       description = "Pet id to delete")),
     responses = Array(new ApiResponse(responseCode = "400", description = "Invalid pet value"))
   )
-  def deleteRoute = delete { path("/pet" / Segment) { id ⇒ complete(id) } }
+  def deleteRoute = delete { path("/pet" / Segment) { id => complete(id) } }
 
 //  @ApiImplicitParams(Array(
 //    new ApiImplicitParam(name = "body", value = "Pet object that needs to be added to the store", required = true, paramType = "body")))
@@ -87,7 +87,7 @@ trait PetHttpService
       description = "Pet id")),
     responses = Array(new ApiResponse(responseCode = "405", description = "Invalid input"))
   )
-  def addRoute = post { path("/pet" / Segment) { id ⇒ complete(id) } }
+  def addRoute = post { path("/pet" / Segment) { id => complete(id) } }
 
   @Produces(value = Array("application/json", "application/xml"))
   @Operation(summary = "searchPet",

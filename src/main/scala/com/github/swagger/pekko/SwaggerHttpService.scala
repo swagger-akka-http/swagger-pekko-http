@@ -25,11 +25,9 @@ import io.swagger.v3.oas.integration.SwaggerConfiguration
 import io.swagger.v3.oas.models.security.{SecurityRequirement, SecurityScheme}
 import io.swagger.v3.oas.models.servers.Server
 import io.swagger.v3.oas.models.{Components, ExternalDocumentation, OpenAPI, SpecVersion}
-import org.apache.commons.lang3.StringUtils
 import org.slf4j.LoggerFactory
 
-import scala.collection.JavaConverters._
-import scala.collection.mutable.{ListBuffer, Map => MutableMap}
+import scala.jdk.CollectionConverters._
 import scala.util.control.NonFatal
 
 object SwaggerHttpService {
@@ -39,8 +37,10 @@ object SwaggerHttpService {
   def removeInitialSlashIfNecessary(path: String): String =
     if(path.startsWith("/")) removeInitialSlashIfNecessary(path.substring(1)) else path
   def removeTrailingSlashIfNecessary(path: String): String =
-    if(path.endsWith("/")) removeTrailingSlashIfNecessary(path.substring(0, path.length)) else path
+    if(path.endsWith("/")) removeTrailingSlashIfNecessary(path.substring(0, path.length - 1)) else path
   def prependSlashIfNecessary(path: String): String  = if(path.startsWith("/")) path else s"/$path"
+
+  private[pekko] def isNotBlank(s: String): Boolean = s != null && !s.isBlank
 
   private[pekko] def apiDocsBase(path: String) = PathMatchers.separateOnSlashes(removeInitialSlashIfNecessary(path))
   private[pekko] val logger = LoggerFactory.getLogger(classOf[SwaggerHttpService])
@@ -119,7 +119,7 @@ trait SwaggerGenerator {
     val path = removeInitialSlashIfNecessary(basePath)
     serverURLs match {
       case Seq() => {
-        val hostPath = if (StringUtils.isNotBlank(path)) {
+        val hostPath = if (isNotBlank(path)) {
           s"${removeTrailingSlashIfNecessary(host)}/${path}/"
         } else {
           host
@@ -127,13 +127,13 @@ trait SwaggerGenerator {
         schemes.foreach { scheme =>
           swagger.addServersItem(new Server().url(s"${scheme.toLowerCase}://$hostPath"))
         }
-        if (schemes.isEmpty && StringUtils.isNotBlank(hostPath)) {
+        if (schemes.isEmpty && isNotBlank(hostPath)) {
           swagger.addServersItem(new Server().url(hostPath))
         }
       }
       case urlSeq => {
         urlSeq.foreach { url =>
-          val urlPath = if (StringUtils.isNotBlank(path)) {
+          val urlPath = if (isNotBlank(path)) {
             s"${removeTrailingSlashIfNecessary(url)}/${path}/"
           } else {
             url
@@ -181,25 +181,18 @@ trait SwaggerGenerator {
     }
   }
 
-  private[pekko] def asJavaMutableList[T](list: List[T]) = {
-    (new ListBuffer[T] ++ list).asJava
-  }
+  private[pekko] def asJavaMutableList[T](list: List[T]): java.util.List[T] =
+    new java.util.ArrayList[T](list.asJava)
 
-  private[pekko] def asJavaMutableMap[K, V](map: Map[K, V]) = {
-    (MutableMap.empty[K, V] ++ map).asJava
-  }
+  private[pekko] def asJavaMutableMap[K, V](map: Map[K, V]): java.util.Map[K, V] =
+    new java.util.LinkedHashMap[K, V](map.asJava)
 
   private[pekko] def filteredSwagger: OpenAPI = {
     val swagger: OpenAPI = reader.read(apiClasses.asJava)
-    Option(swagger.getComponents) match {
-      case Some(components) => {
-        if (!unwantedDefinitions.isEmpty) {
-          val filteredSchemas = asJavaMutableMap(asScala(components.getSchemas).filterKeys(
-            definitionName => !unwantedDefinitions.contains(definitionName)).toMap)
-          components.setSchemas(filteredSchemas)
-        }
+    if (unwantedDefinitions.nonEmpty) {
+      Option(swagger.getComponents).foreach { components =>
+        components.setSchemas(asJavaMutableMap(asScala(components.getSchemas).removedAll(unwantedDefinitions)))
       }
-      case _ =>
     }
     swagger
   }
