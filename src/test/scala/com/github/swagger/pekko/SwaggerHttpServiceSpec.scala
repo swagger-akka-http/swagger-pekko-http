@@ -241,6 +241,12 @@ class SwaggerHttpServiceSpec
       "removeInitialSlashIfNecessary does not need to remove a slash" in {
         SwaggerHttpService.removeInitialSlashIfNecessary("api-doc") should equal ("api-doc")
       }
+      "removeTrailingSlashIfNecessary removes trailing slashes" in {
+        SwaggerHttpService.removeTrailingSlashIfNecessary("api.example.com//") should equal ("api.example.com")
+      }
+      "removeTrailingSlashIfNecessary does not need to remove a slash" in {
+        SwaggerHttpService.removeTrailingSlashIfNecessary("api.example.com") should equal ("api.example.com")
+      }
     }
 
     "defining an apiDocsPath" should {
