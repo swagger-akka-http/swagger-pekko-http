@@ -39,7 +39,7 @@ object SwaggerHttpService {
   def removeInitialSlashIfNecessary(path: String): String =
     if(path.startsWith("/")) removeInitialSlashIfNecessary(path.substring(1)) else path
   def removeTrailingSlashIfNecessary(path: String): String =
-    if(path.endsWith("/")) removeTrailingSlashIfNecessary(path.substring(0, path.length)) else path
+    if(path.endsWith("/")) removeTrailingSlashIfNecessary(path.substring(0, path.length - 1)) else path
   def prependSlashIfNecessary(path: String): String  = if(path.startsWith("/")) path else s"/$path"
 
   private[pekko] def apiDocsBase(path: String) = PathMatchers.separateOnSlashes(removeInitialSlashIfNecessary(path))
