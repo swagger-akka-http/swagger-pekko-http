@@ -5,7 +5,7 @@ organization := "com.github.swagger-akka-http"
 
 name := "swagger-pekko-http"
 
-val swaggerVersion = "2.2.55"
+val swaggerVersion = "2.2.56"
 val pekkoVersion = "2.0.0"
 val pekkoHttpVersion = "2.0.0"
 val jacksonVersion = "2.23.0"
